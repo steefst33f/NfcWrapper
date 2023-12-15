@@ -1,6 +1,6 @@
 /**************************************************************************/
 /*!
-    @file     NfcWrapper.cpp
+    @file     main.cpp
     @author   Steef
     @license  BSD
 */
