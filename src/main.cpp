@@ -7,8 +7,6 @@
 /**************************************************************************/
 
 #include <Arduino.h>
-#include <Wire.h>
-#include <SPI.h>
 #include "NfcWrapper.h"
 
 //NFC module
@@ -35,9 +33,7 @@ void onReadingTag(/*ISO14443aTag tag*/);
 void onReadTagRecord(String stringRecord);
 void onFailure(NfcWrapper::Error error);
 
-// TaskScheduler task functions
 void scanningForNfc();
-void scanningForSerialAppConfigurationCommands();
 
 void setup()
 {
@@ -49,9 +45,9 @@ void setup()
   
   //setup nfc callback handlers
   nfc.setOnNfcModuleConnected(onNfcModuleConnected);
-  nfc.setOnStartScanningTag(onStartScanningTag);
+  nfc.setOnStartScanningForTag(onStartScanningTag);
   nfc.setOnReadMessageRecord(onReadTagRecord);
-  nfc.setOnReadingTag(onReadingTag);
+  nfc.setOnStartReadingTag(onReadingTag);
   nfc.setOnFailure(onFailure);
 
   //connect to nfc module
@@ -66,7 +62,6 @@ void loop() {
 //---------------------------------------------------------------------------------------------------
 
 void scanningForNfc() {
-  log_e();
   Serial.println("scanningForNfc..");
   if (nfc.isNfcModuleAvailable()) {
     nfc.scanForTag();
@@ -74,7 +69,6 @@ void scanningForNfc() {
 }
 
 //---------------------------------------------------------------------------------------------------
-
 
 //NFC callback handlers
 void onNfcModuleConnected() {
