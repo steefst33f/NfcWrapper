@@ -70,7 +70,6 @@ void NfcWrapper::readTagMessage() {
 #endif
     NfcTag tag = nfcAdapter.read();
     if (tag.hasNdefMessage()) {
-        // log_e();
         NdefMessage message = tag.getNdefMessage();
         message.print();
 
@@ -79,7 +78,6 @@ void NfcWrapper::readTagMessage() {
         MY_NFC_DEBUG_SERIAL.println("recordCount: " + recordCount);
         #endif
         if (recordCount < 1) {
-            // log_e();
             readFailed();
             return;
         }
@@ -87,7 +85,6 @@ void NfcWrapper::readTagMessage() {
         // If more than 1 Message then it wil cycle through them untill it finds a LNURL
         for(int i = 0; i < recordCount; i++) {
             NdefRecord record = message.getRecord(i);
-            // log_e();
             record.print();
 
             int payloadLength = record.getPayloadLength();
@@ -130,7 +127,7 @@ void NfcWrapper::setOnNfcModuleConnected(std::function<void(void)> onNfcModuleCo
     _onNfcModuleConnected = onNfcModuleConnected;
 }
 
-void NfcWrapper::setOnStartScanningTag(std::function<void(void)> onStartScanningTag) {
+void NfcWrapper::setOnStartScanningForTag(std::function<void(void)> onStartScanningTag) {
     _onStartScanningTag = onStartScanningTag;
 }
 
@@ -138,8 +135,8 @@ void NfcWrapper::setOnReadMessageRecord(std::function<void(String)> onReadMessag
     _onReadMessageRecord = onReadMessageRecord;
 }
 
-void NfcWrapper::setOnReadingTag(std::function<void(/*ISO14443aTag*/)> onReadingTag) {
-    _onReadingTag = onReadingTag;
+void NfcWrapper::setOnStartReadingTag(std::function<void(/*ISO14443aTag*/)> onStartReadingTag) {
+    _onStartReadingTag = onStartReadingTag;
 }
 
 void NfcWrapper::setOnFailure(std::function<void(Error)> onFailure) {
@@ -194,7 +191,7 @@ void NfcWrapper::tagIdentifiedSuccess(/*ISO14443aTag tag*/) {
     #endif
     if (state == State::inlisting) {
         state = State::reading;
-        _onReadingTag(/*tag*/);
+        _onStartReadingTag(/*tag*/);
         readTagMessage();
     }
 }

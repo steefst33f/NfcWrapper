@@ -23,7 +23,7 @@ class NfcWrapper {
         notConnected,
         idle,
         scanning,
-        inlisting,
+        inlisting, // identifying
         reading,
         releasing
     };
@@ -52,9 +52,9 @@ class NfcWrapper {
 
     // Handlers
     void setOnNfcModuleConnected(std::function<void(void)> setOnNfcModuleConnected);
-    void setOnStartScanningTag(std::function<void(void)> onStartScanningTag);
+    void setOnStartScanningForTag(std::function<void(void)> onStartScanningForTag);
     void setOnReadMessageRecord(std::function<void(String)> onReadMessageRecord);
-    void setOnReadingTag(std::function<void(/*ISO14443aTag*/)> onReadingTag);
+    void setOnStartReadingTag(std::function<void(/*ISO14443aTag*/)> onStartReadingTag); // actualy on identifiedTag but it will also initiate Reading the NDEF message when called
     void setOnFailure(std::function<void(Error)> onFailure);
 
     bool isNfcModuleAvailable();
@@ -87,7 +87,7 @@ class NfcWrapper {
     std::function<void(void)> _onNfcModuleConnected;
     std::function<void(void)> _onStartScanningTag;
     std::function<void(String)> _onReadMessageRecord;
-    std::function<void(/*ISO14443aTag*/)> _onReadingTag;
+    std::function<void(/*ISO14443aTag*/)> _onStartReadingTag;
     std::function<void(Error)> _onFailure;
 };
 
