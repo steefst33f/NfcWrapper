@@ -15,10 +15,10 @@
     "examples": [
         {
             "name": "ReadNfcTags",
-            "base": "src/main",
+            "base": "examples/ReadNfcTags",
             "files": [
                 "platformio.ini",
-                "src/main.cpp"
+                "examples/ReadNfcTags.cpp"
             ]
         }
     ],
