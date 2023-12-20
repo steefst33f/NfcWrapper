@@ -7,7 +7,7 @@
 /**************************************************************************/
 
 #include <Arduino.h>
-#include "NfcWrapper.h"
+#include <NfcWrapper.h>
 
 //NFC module
 #if NFC_SPI
@@ -59,7 +59,7 @@ void loop() {
   delay(1000);
 }
 
-//---------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------//
 
 void scanningForNfc() {
   Serial.println("scanningForNfc..");
@@ -67,8 +67,6 @@ void scanningForNfc() {
     nfc.scanForTag();
   }
 }
-
-//---------------------------------------------------------------------------------------------------
 
 //NFC callback handlers
 void onNfcModuleConnected() {
