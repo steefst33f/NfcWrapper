@@ -1,6 +1,6 @@
 /**************************************************************************/
 /*!
-    @file     main.cpp
+    @file     ReadNfcTags.cpp
     @author   Steef
     @license  BSD
 */
