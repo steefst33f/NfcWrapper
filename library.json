@@ -1,0 +1,39 @@
+{
+    "authors": [
+        {
+            "maintainer": true,
+            "name": "Steef",
+            "url": "https://github.com/steefst33f"
+        }
+    ],
+    "description": "NFC wrapper around PN532 and NDEF library to read out different NFC tags",
+    "export": {
+        "exclude": [
+            "tests"
+        ]
+    },
+    "examples": [
+        {
+            "name": "ReadNfcTags",
+            "base": "src/main",
+            "files": [
+                "platformio.ini",
+                "src/main.cpp"
+            ]
+        }
+    ],
+    "frameworks": "arduino",
+    "keywords": "nfc, ntag, ntag424, pn532",
+    "license": "BSD-3-Clause",
+    "name": "NfcWrapper",
+    "platforms": "espressif32",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/steefst33f/NfcWrapper.git"
+    },
+    "dependencies": {
+        "steefst33f/Adafruit-PN532": "https://github.com/steefst33f/Adafruit-PN532.git#DON_NDEF_COMPATIBLE",
+	    "steefst33f/NDEF": "https://github.com/steefst33f/NDEF.git#Adafruit_PN532_Compatible"
+    },
+    "version": "1.0.0"
+}
