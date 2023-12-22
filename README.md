@@ -18,5 +18,5 @@ This wrapper handles the reading flow so that you only need to implement the han
 
 ## Example 
 
-In the main.cpp file you can find an example of the implementation of the nfc wrappper that scans for a ISO1443a tag and will read and return its record if found.
+In the Examples you can find an example of the implementation of the nfc wrappper that scans for a ISO1443a tag and will read and return its record if found.
 
